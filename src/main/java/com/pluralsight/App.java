@@ -11,7 +11,6 @@ public class App {
 
     public static void main(String[] args) {
 
-
         displayWelcomeBanner();
         runHomeScreen();
 
@@ -115,6 +114,27 @@ public class App {
         System.out.println("       ACCOUNTING LEDGER      ");
         System.out.println("==============================");
         System.out.println("Welcome to your financial tracker!");
+    }
+
+    // ---------- Input helpers ----------
+
+    public static String promptForString(String prompt) {
+
+        while (true) {
+
+            System.out.print(prompt);
+            String input = scanner.nextLine().trim();
+
+            if (input.isBlank()) {
+                System.out.println("Input cannot be blank.");
+
+            } else if (input.contains("|")) {
+                System.out.println("Input cannot contain |.");
+
+            } else {
+                return input;
+            }
+        }
     }
 }
 
