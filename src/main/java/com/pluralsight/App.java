@@ -46,7 +46,36 @@ public class App {
         }
     }
 
+    public static void runLedgerScreen() {
 
+        String command = "";
+
+        while (!command.equalsIgnoreCase("H")) {
+
+            System.out.println("""
+                
+                ===== LEDGER MENU =====
+                A - All Transactions
+                D - Deposits
+                P - Payments
+                R - Reports
+                H - Home
+                =======================
+                """);
+
+            System.out.print("Enter your choice: ");
+            command = scanner.nextLine();
+
+            switch (command.toUpperCase()) {
+                case "A" -> System.out.println("All Transactions coming soon!");
+                case "D" -> System.out.println("Deposits coming soon!");
+                case "P" -> System.out.println("Payments coming soon!");
+                case "R" -> System.out.println("Reports coming soon!");
+                case "H" -> System.out.println("Returning Home...");
+                default -> System.out.println("Invalid option. Try again.");
+            }
+        }
+    }
 
     public static void displayWelcomeBanner() {
         System.out.println("==============================");
