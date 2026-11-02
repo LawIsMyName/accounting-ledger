@@ -77,6 +77,39 @@ public class App {
         }
     }
 
+    public static void runReportsScreen() {
+
+        String command = "";
+
+        while (!command.equals("0")) {
+
+            System.out.println("""
+                
+                ===== REPORTS MENU =====
+                1 - Month To Date
+                2 - Previous Month
+                3 - Year To Date
+                4 - Previous Year
+                5 - Search by Vendor
+                0 - Back to Ledger
+                ========================
+                """);
+
+            System.out.print("Enter your choice: ");
+            command = scanner.nextLine();
+
+            switch (command) {
+                case "1" -> System.out.println("Month To Date coming soon!");
+                case "2" -> System.out.println("Previous Month coming soon!");
+                case "3" -> System.out.println("Year To Date coming soon!");
+                case "4" -> System.out.println("Previous Year coming soon!");
+                case "5" -> System.out.println("Search by Vendor coming soon!");
+                case "0" -> System.out.println("Returning to Ledger...");
+                default -> System.out.println("Invalid option. Try again.");
+            }
+        }
+    }
+
     public static void displayWelcomeBanner() {
         System.out.println("==============================");
         System.out.println("       ACCOUNTING LEDGER      ");
