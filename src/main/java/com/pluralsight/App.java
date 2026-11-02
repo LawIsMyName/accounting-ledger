@@ -70,7 +70,7 @@ public class App {
                 case "A" -> System.out.println("All Transactions coming soon!");
                 case "D" -> System.out.println("Deposits coming soon!");
                 case "P" -> System.out.println("Payments coming soon!");
-                case "R" -> System.out.println("Reports coming soon!");
+                case "R" -> runReportsScreen();
                 case "H" -> System.out.println("Returning Home...");
                 default -> System.out.println("Invalid option. Try again.");
             }
