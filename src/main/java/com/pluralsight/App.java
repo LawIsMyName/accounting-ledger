@@ -129,13 +129,28 @@ public class App {
                 System.out.println("Input cannot be blank.");
 
             } else if (input.contains("|")) {
-                System.out.println("Input cannot contain |.");
+                System.out.println("Input cannot contain pipe symbol. Example: |");
 
             } else {
                 return input;
             }
         }
     }
+
+    public static double promptForDouble(String prompt) {
+        while (true) {
+            System.out.print(prompt);
+            try {
+
+                return Double.parseDouble(scanner.nextLine().trim());
+
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a valid number. Example: 12.50");
+            }
+        }
+    }
+
+
 }
 
 
