@@ -12,6 +12,8 @@ public class App {
     public static void main(String[] args) {
 
 
+        displayWelcomeBanner();
+        runHomeScreen();
 
     }
 
@@ -43,6 +45,8 @@ public class App {
             }
         }
     }
+
+
 
     public static void displayWelcomeBanner() {
         System.out.println("==============================");
