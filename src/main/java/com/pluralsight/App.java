@@ -11,8 +11,37 @@ public class App {
 
     public static void main(String[] args) {
 
-        displayWelcomeBanner();
 
+
+    }
+
+    public static void runHomeScreen() {
+
+        String command = "";
+
+        while (!command.equalsIgnoreCase("X")) {
+
+            System.out.println("""
+                
+                ===== HOME MENU =====
+                D - Add Deposit
+                P - Make Payment
+                L - Ledger
+                X - Exit
+                =====================
+                """);
+
+            System.out.print("Enter your choice: ");
+            command = scanner.nextLine();
+
+            switch (command.toUpperCase()) {
+                case "D" -> System.out.println("Add Deposit coming soon!");
+                case "P" -> System.out.println("Make Payment coming soon!");
+                case "L" -> System.out.println("Ledger coming soon!");
+                case "X" -> System.out.println("Goodbye!");
+                default -> System.out.println("Invalid option. Try again.");
+            }
+        }
     }
 
     public static void displayWelcomeBanner() {
