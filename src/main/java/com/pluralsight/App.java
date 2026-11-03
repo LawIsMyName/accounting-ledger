@@ -143,7 +143,9 @@ public class App {
                 date, time, description, vendor, amount
         );
 
-        System.out.println(transaction);
+        if (saveTransaction(transaction)) {
+            System.out.println("Deposit saved successfully!");
+        }
     }
 
     public static void makePayment() {
@@ -173,7 +175,9 @@ public class App {
                 date, time, description, vendor, amount
         );
 
-        System.out.println(transaction);
+        if (saveTransaction(transaction)) {
+            System.out.println("Deposit saved successfully!");
+        }
     }
 
     public static boolean saveTransaction(Transaction transaction) {
