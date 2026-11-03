@@ -38,7 +38,7 @@ public class App {
             command = scanner.nextLine();
 
             switch (command.toUpperCase()) {
-                case "D" -> System.out.println("Add Deposit coming soon!");
+                case "D" -> addDeposit();
                 case "P" -> System.out.println("Make Payment coming soon!");
                 case "L" -> runLedgerScreen();
                 case "X" -> System.out.println("Goodbye!");
