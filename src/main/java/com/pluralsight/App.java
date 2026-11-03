@@ -210,7 +210,7 @@ public class App {
             command = scanner.nextLine();
 
             switch (command) {
-                case "1" -> System.out.println("Month To Date coming soon!");
+                case "1" -> displayMonthToDate();
                 case "2" -> System.out.println("Previous Month coming soon!");
                 case "3" -> System.out.println("Year To Date coming soon!");
                 case "4" -> System.out.println("Previous Year coming soon!");
@@ -221,23 +221,35 @@ public class App {
         }
     }
 
-    public static void displayReportHeader(String title) {
+    public static void displayMonthToDate() {
 
-        System.out.println("\n===== " + title + " =====");
+        LocalDate today = LocalDate.now();
+
+        displayReportHeader("MONTH TO DATE");
 
         int count = 0;
 
         for (Transaction transaction : transactions) {
 
-            // Display each transaction using toString()
-            System.out.println(transaction);
+            LocalDate date = transaction.getDate();
 
-            count = count + 1;
+            if (date.getMonthValue() == today.getMonthValue()
+                    && date.getYear() == today.getYear()
+                    && !date.isAfter(today)) {
+
+                System.out.println(transaction);
+
+                count = count + 1;
+            }
         }
 
         System.out.println("Total transactions: " + count);
     }
 
+    public static void displayReportHeader(String title) {
+
+        System.out.println("\n===== " + title + " =====");
+    }
 
     public static void displayWelcomeBanner() {
         System.out.println("==============================");
