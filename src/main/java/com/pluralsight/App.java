@@ -212,7 +212,7 @@ public class App {
             switch (command) {
                 case "1" -> displayMonthToDate();
                 case "2" -> displayPreviousMonth();
-                case "3" -> System.out.println("Year To Date coming soon!");
+                case "3" -> displayYearToDate();
                 case "4" -> System.out.println("Previous Year coming soon!");
                 case "5" -> System.out.println("Search by Vendor coming soon!");
                 case "0" -> System.out.println("Returning to Ledger...");
@@ -260,6 +260,30 @@ public class App {
 
             if (date.getMonthValue() == previousMonth.getMonthValue()
                     && date.getYear() == previousMonth.getYear()) {
+
+                System.out.println(transaction);
+
+                count = count + 1;
+            }
+        }
+
+        System.out.println("Total transactions: " + count);
+    }
+
+    public static void displayYearToDate() {
+
+        LocalDate today = LocalDate.now();
+
+        displayReportHeader("YEAR TO DATE");
+
+        int count = 0;
+
+        for (Transaction transaction : transactions) {
+
+            LocalDate date = transaction.getDate();
+
+            if (date.getYear() == today.getYear()
+                    && !date.isAfter(today)) {
 
                 System.out.println(transaction);
 
