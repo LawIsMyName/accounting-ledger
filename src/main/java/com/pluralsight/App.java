@@ -1,10 +1,7 @@
 package com.pluralsight;
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -92,42 +89,46 @@ public class App {
 
             while (line != null) {
 
-                try {
-                    String[] parts = line.split("\\|", -1);
+                if (!line.isBlank() && !line.startsWith("date|")) {
 
-                    if (parts.length != 5) {
+
+                    try {
+                        String[] parts = line.split("\\|", -1);
+
+                        if (parts.length != 5) {
+                            System.out.println("Skipping invalid row: " + line);
+
+                        } else {
+                            LocalDate date = LocalDate.parse(parts[0]);
+                            LocalTime time = LocalTime.parse(parts[1]);
+
+                            String description = parts[2];
+                            String vendor = parts[3];
+                            double amount = Double.parseDouble(parts[4]);
+
+                            Transaction transaction = new Transaction(
+                                    date, time, description, vendor, amount
+                            );
+
+                            transactions.add(transaction);
+                        }
+
+
+                    } catch (RuntimeException e) {
                         System.out.println("Skipping invalid row: " + line);
-
-                    } else {
-                        LocalDate date = LocalDate.parse(parts[0]);
-                        LocalTime time = LocalTime.parse(parts[1]);
-
-                        String description = parts[2];
-                        String vendor = parts[3];
-                        double amount = Double.parseDouble(parts[4]);
-
-                        Transaction transaction = new Transaction(
-                                date, time, description, vendor, amount
-                        );
-
-                        transactions.add(transaction);
                     }
-
-
-                } catch (RuntimeException e) {
-                    System.out.println("Skipping invalid row: " + line);
                 }
 
-                line = bufferedReader.readLine();
+                    line = bufferedReader.readLine();
             }
 
-            bufferedReader.close();
+                bufferedReader.close();
 
-            System.out.println(transactions.size() + " transactions loaded.");
+                System.out.println(transactions.size() + " transactions loaded.");
 
-        } catch (IOException e) {
-            System.out.println("Could not read transactions.csv");
-        }
+            } catch(IOException e){
+                System.out.println("Could not read transactions.csv");
+            }
     }
 
     public static void runReportsScreen() {
