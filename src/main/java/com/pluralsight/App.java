@@ -90,12 +90,31 @@ public class App {
 
             while (line != null) {
 
-                System.out.println(line);
+                if (!line.isBlank() && !line.startsWith("date|")) {
+
+                    String[] parts = line.split("\\|");
+
+                    LocalDate date = LocalDate.parse(parts[0]);
+                    LocalTime time = LocalTime.parse(parts[1]);
+
+                    String description = parts[2];
+                    String vendor = parts[3];
+
+                    double amount = Double.parseDouble(parts[4]);
+
+                    Transaction transaction = new Transaction(
+                            date, time, description, vendor, amount
+                    );
+
+                    transactions.add(transaction);
+                }
 
                 line = bufferedReader.readLine();
             }
 
             bufferedReader.close();
+
+            System.out.println(transactions.size() + " transactions loaded.");
 
         } catch (IOException e) {
             System.out.println("Could not read transactions.csv");
