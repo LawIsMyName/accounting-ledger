@@ -176,6 +176,36 @@ public class App {
         System.out.println(transaction);
     }
 
+    public static boolean saveTransaction(Transaction transaction) {
+
+        DateTimeFormatter timeFormatter =
+                DateTimeFormatter.ofPattern("HH:mm:ss");
+
+        String time = transaction.getTime().format(timeFormatter);
+
+        String line = String.format(
+                "%s|%s|%s|%s|%.2f\n",
+                transaction.getDate(),
+                time,
+                transaction.getDescription(),
+                transaction.getVendor(),
+                transaction.getAmount()
+        );
+
+        try {
+            FileWriter writer = new FileWriter("transactions.csv", true);
+
+            writer.write(line);
+            writer.close();
+
+            return true;
+
+        } catch (IOException e) {
+            System.out.println("Error saving transaction.");
+            return false;
+        }
+    }
+
     // ---------- Input helpers ----------
 
     public static String promptForString(String prompt) {
