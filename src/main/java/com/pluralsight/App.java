@@ -146,6 +146,36 @@ public class App {
         System.out.println(transaction);
     }
 
+    public static void makePayment() {
+
+        System.out.println("===== MAKE PAYMENT =====");
+
+        String description = promptForString("Enter description: ");
+        String vendor = promptForString("Enter vendor: ");
+
+        double amount = 0;
+
+        while (amount <= 0) {
+
+            amount = promptForDouble("Enter amount: ");
+
+            if (amount <= 0) {
+                System.out.println("Amount must be greater than 0.");
+            }
+        }
+
+        amount = -amount;
+
+        LocalDate date = LocalDate.now();
+        LocalTime time = LocalTime.now();
+
+        Transaction transaction = new Transaction(
+                date, time, description, vendor, amount
+        );
+
+        System.out.println(transaction);
+    }
+
     // ---------- Input helpers ----------
 
     public static String promptForString(String prompt) {
