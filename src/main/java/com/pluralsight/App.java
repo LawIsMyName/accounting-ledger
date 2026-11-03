@@ -78,6 +78,22 @@ public class App {
         }
     }
 
+    public static void displayAllTransactions() {
+
+        System.out.println("===== ALL TRANSACTIONS =====");
+
+        int count = 0;
+
+        for (Transaction transaction : transactions) {
+
+            System.out.println(transaction);
+
+            count = count + 1;
+        }
+
+        System.out.println("Total transactions: " + count);
+    }
+
     public static void loadTransactions() {
         transactions.clear();
 
