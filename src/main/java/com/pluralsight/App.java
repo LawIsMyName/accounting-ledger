@@ -90,26 +90,31 @@ public class App {
 
             while (line != null) {
 
-                if (!line.isBlank() && !line.startsWith("date|")) {
+                try {
+                    String[] parts = line.split("\\|", -1);
 
-                    String[] parts = line.split("\\|");
+                    if (parts.length != 5) {
+                        System.out.println("Skipping invalid row: " + line);
 
-                    LocalDate date = LocalDate.parse(parts[0]);
-                    LocalTime time = LocalTime.parse(parts[1]);
+                    } else {
+                        LocalDate date = LocalDate.parse(parts[0]);
+                        LocalTime time = LocalTime.parse(parts[1]);
 
-                    String description = parts[2];
-                    String vendor = parts[3];
+                        String description = parts[2];
+                        String vendor = parts[3];
+                        double amount = Double.parseDouble(parts[4]);
 
-                    double amount = Double.parseDouble(parts[4]);
+                        Transaction transaction = new Transaction(
+                                date, time, description, vendor, amount
+                        );
 
-                    Transaction transaction = new Transaction(
-                            date, time, description, vendor, amount
-                    );
+                        transactions.add(transaction);
+                    }
 
-                    transactions.add(transaction);
+                    line = bufferedReader.readLine();
+                } catch (RuntimeException e) {
+                    System.out.println("Skipping invalid row: " + line);
                 }
-
-                line = bufferedReader.readLine();
             }
 
             bufferedReader.close();
