@@ -192,6 +192,9 @@ public class App {
         );
 
         if (saveTransaction(transaction)) {
+
+            transactions.add(transaction);
+
             System.out.println("Deposit saved successfully!");
         }
     }
@@ -224,7 +227,10 @@ public class App {
         );
 
         if (saveTransaction(transaction)) {
-            System.out.println("Deposit saved successfully!");
+
+            transactions.add(transaction);
+
+            System.out.println("Payment saved successfully!");
         }
     }
 
