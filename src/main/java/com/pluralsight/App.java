@@ -39,7 +39,7 @@ public class App {
 
             switch (command.toUpperCase()) {
                 case "D" -> addDeposit();
-                case "P" -> System.out.println("Make Payment coming soon!");
+                case "P" -> makePayment();
                 case "L" -> runLedgerScreen();
                 case "X" -> System.out.println("Goodbye!");
                 default -> System.out.println("Invalid option. Try again.");
