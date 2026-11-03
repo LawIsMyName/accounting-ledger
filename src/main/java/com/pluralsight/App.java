@@ -221,6 +221,24 @@ public class App {
         }
     }
 
+    public static void displayReportHeader(String title) {
+
+        System.out.println("\n===== " + title + " =====");
+
+        int count = 0;
+
+        for (Transaction transaction : transactions) {
+
+            // Display each transaction using toString()
+            System.out.println(transaction);
+
+            count = count + 1;
+        }
+
+        System.out.println("Total transactions: " + count);
+    }
+
+
     public static void displayWelcomeBanner() {
         System.out.println("==============================");
         System.out.println("       ACCOUNTING LEDGER      ");
