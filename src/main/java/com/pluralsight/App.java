@@ -15,7 +15,6 @@ public class App {
         loadTransactions();
         displayWelcomeBanner();
         runHomeScreen();
-
     }
 
     public static void runHomeScreen() {
