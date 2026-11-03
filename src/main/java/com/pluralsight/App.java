@@ -15,6 +15,7 @@ public class App {
 
     public static void main(String[] args) {
 
+        loadTransactions();
         displayWelcomeBanner();
         runHomeScreen();
 
@@ -81,6 +82,7 @@ public class App {
     }
 
     public static void loadTransactions() {
+        transactions.clear();
 
         try {
             FileReader fileReader = new FileReader("transactions.csv");
@@ -111,10 +113,12 @@ public class App {
                         transactions.add(transaction);
                     }
 
-                    line = bufferedReader.readLine();
+
                 } catch (RuntimeException e) {
                     System.out.println("Skipping invalid row: " + line);
                 }
+
+                line = bufferedReader.readLine();
             }
 
             bufferedReader.close();
