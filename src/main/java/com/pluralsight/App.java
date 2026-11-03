@@ -94,6 +94,25 @@ public class App {
         System.out.println("Total transactions: " + count);
     }
 
+    public static void displayDeposits() {
+
+        System.out.println("===== DEPOSITS =====");
+
+        int count = 0;
+
+        for (Transaction transaction : transactions) {
+
+            if (transaction.getAmount() > 0) {
+
+                System.out.println(transaction);
+
+                count = count + 1;
+            }
+        }
+
+        System.out.println("Total deposits: " + count);
+    }
+
     public static void loadTransactions() {
         transactions.clear();
 
