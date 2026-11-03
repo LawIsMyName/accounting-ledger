@@ -110,6 +110,10 @@ public class App {
             }
         }
 
+        if (count == 0) {
+            System.out.println("No transactions found.");
+        }
+
         System.out.println("Total deposits: " + count);
     }
 
