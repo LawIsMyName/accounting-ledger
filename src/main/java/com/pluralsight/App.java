@@ -1,4 +1,6 @@
 package com.pluralsight;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.FileWriter;
@@ -9,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 
 public class App {
     static Scanner scanner = new Scanner(System.in);
-    static ArrayList<Transaction> transaction = new ArrayList<>();
+    static ArrayList<Transaction> transactions = new ArrayList<>();
 
     public static void main(String[] args) {
 
@@ -75,6 +77,28 @@ public class App {
                 case "H" -> System.out.println("Returning Home...");
                 default -> System.out.println("Invalid option. Try again.");
             }
+        }
+    }
+
+    public static void loadTransactions() {
+
+        try {
+            FileReader fileReader = new FileReader("transactions.csv");
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            String line = bufferedReader.readLine();
+
+            while (line != null) {
+
+                System.out.println(line);
+
+                line = bufferedReader.readLine();
+            }
+
+            bufferedReader.close();
+
+        } catch (IOException e) {
+            System.out.println("Could not read transactions.csv");
         }
     }
 
