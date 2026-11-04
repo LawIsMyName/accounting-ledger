@@ -214,7 +214,7 @@ public class App {
                 case "2" -> displayPreviousMonth();
                 case "3" -> displayYearToDate();
                 case "4" -> displayPreviousYear();
-                case "5" -> System.out.println("Search by Vendor coming soon!");
+                case "5" -> searchByVendor();
                 case "0" -> System.out.println("Returning to Ledger...");
                 default -> System.out.println("Invalid option. Try again.");
             }
@@ -312,6 +312,31 @@ public class App {
 
                 count = count + 1;
             }
+        }
+
+        System.out.println("Total transactions: " + count);
+    }
+
+    public static void searchByVendor() {
+
+        String vendor = promptForString("Enter vendor name: ");
+
+        displayReportHeader("SEARCH BY VENDOR");
+
+        int count = 0;
+
+        for (Transaction transaction : transactions) {
+
+            if (transaction.getVendor().equalsIgnoreCase(vendor)) {
+
+                System.out.println(transaction);
+
+                count = count + 1;
+            }
+        }
+
+        if (count == 0) {
+            System.out.println("No transactions found.");
         }
 
         System.out.println("Total transactions: " + count);
