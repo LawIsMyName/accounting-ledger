@@ -242,8 +242,11 @@ public class App {
                 count = count + 1;
             }
         }
-
+        if (count == 0) {
+            System.out.println("No transactions found.");
+        }
         System.out.println("Total transactions: " + count);
+
     }
 
     public static void displayPreviousMonth() {
@@ -267,7 +270,12 @@ public class App {
             }
         }
 
+        if (count == 0) {
+            System.out.println("No transactions found.");
+        }
+
         System.out.println("Total transactions: " + count);
+
     }
 
     public static void displayYearToDate() {
@@ -291,7 +299,12 @@ public class App {
             }
         }
 
+        if (count == 0) {
+            System.out.println("No transactions found.");
+        }
+
         System.out.println("Total transactions: " + count);
+
     }
 
     public static void displayPreviousYear() {
@@ -313,8 +326,11 @@ public class App {
                 count = count + 1;
             }
         }
-
+        if (count == 0) {
+            System.out.println("No transactions found.");
+        }
         System.out.println("Total transactions: " + count);
+
     }
 
     public static void searchByVendor() {
