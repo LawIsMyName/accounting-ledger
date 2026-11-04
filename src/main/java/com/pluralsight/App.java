@@ -91,6 +91,8 @@ public class App {
         }
 
         System.out.println("Total transactions: " + count);
+
+        pressEnterToContinue();
     }
 
     public static void displayDeposits() {
@@ -114,6 +116,8 @@ public class App {
         }
 
         System.out.println("Total deposits: " + count);
+
+        pressEnterToContinue();
     }
 
     public static void displayPayments() {
@@ -133,6 +137,8 @@ public class App {
         }
 
         System.out.println("Total payments: " + count);
+
+        pressEnterToContinue();
     }
 
     public static void loadTransactions() {
@@ -247,6 +253,8 @@ public class App {
         }
         System.out.println("Total transactions: " + count);
 
+        pressEnterToContinue();
+
     }
 
     public static void displayPreviousMonth() {
@@ -275,6 +283,8 @@ public class App {
         }
 
         System.out.println("Total transactions: " + count);
+
+        pressEnterToContinue();
 
     }
 
@@ -305,6 +315,8 @@ public class App {
 
         System.out.println("Total transactions: " + count);
 
+        pressEnterToContinue();
+
     }
 
     public static void displayPreviousYear() {
@@ -331,6 +343,8 @@ public class App {
         }
         System.out.println("Total transactions: " + count);
 
+        pressEnterToContinue();
+
     }
 
     public static void searchByVendor() {
@@ -356,6 +370,8 @@ public class App {
         }
 
         System.out.println("Total transactions: " + count);
+
+        pressEnterToContinue();
     }
 
     public static void displayReportHeader(String title) {
@@ -401,6 +417,8 @@ public class App {
 
             System.out.println("Deposit saved successfully!");
         }
+
+        pressEnterToContinue();
     }
 
     public static void makePayment() {
@@ -419,6 +437,8 @@ public class App {
             if (amount <= 0) {
                 System.out.println("Amount must be greater than 0.");
             }
+
+            pressEnterToContinue();
         }
 
         amount = -amount;
