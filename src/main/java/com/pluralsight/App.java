@@ -502,6 +502,12 @@ public class App {
         }
     }
 
+    public static void pressEnterToContinue() {
+        System.out.println();
+        System.out.print("Press Enter to continue...");
+        scanner.nextLine();
+    }
+
 
 }
 
