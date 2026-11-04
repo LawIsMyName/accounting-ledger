@@ -24,14 +24,14 @@ public class App {
         while (!command.equalsIgnoreCase("X")) {
 
             System.out.println("""
-                
-                ===== HOME MENU =====
-                D - Add Deposit
-                P - Make Payment
-                L - Ledger
-                X - Exit
-                =====================
-                """);
+                    
+                    ===== HOME MENU =====
+                    D - Add Deposit
+                    P - Make Payment
+                    L - Ledger
+                    X - Exit
+                    =====================
+                    """);
 
             System.out.print("Enter your choice: ");
             command = scanner.nextLine();
@@ -53,15 +53,15 @@ public class App {
         while (!command.equalsIgnoreCase("H")) {
 
             System.out.println("""
-                
-                ===== LEDGER MENU =====
-                A - All Transactions
-                D - Deposits
-                P - Payments
-                R - Reports
-                H - Home
-                =======================
-                """);
+                    
+                    ===== LEDGER MENU =====
+                    A - All Transactions
+                    D - Deposits
+                    P - Payments
+                    R - Reports
+                    H - Home
+                    =======================
+                    """);
 
             System.out.print("Enter your choice: ");
             command = scanner.nextLine();
@@ -176,16 +176,16 @@ public class App {
                     }
                 }
 
-                    line = bufferedReader.readLine();
+                line = bufferedReader.readLine();
             }
 
-                bufferedReader.close();
+            bufferedReader.close();
 
-                System.out.println(transactions.size() + " transactions loaded.");
+            System.out.println(transactions.size() + " transactions loaded.");
 
-            } catch(IOException e){
-                System.out.println("Could not read transactions.csv");
-            }
+        } catch (IOException e) {
+            System.out.println("Could not read transactions.csv");
+        }
     }
 
     public static void runReportsScreen() {
@@ -195,16 +195,16 @@ public class App {
         while (!command.equals("0")) {
 
             System.out.println("""
-                
-                ===== REPORTS MENU =====
-                1 - Month To Date
-                2 - Previous Month
-                3 - Year To Date
-                4 - Previous Year
-                5 - Search by Vendor
-                0 - Back to Ledger
-                ========================
-                """);
+                    
+                    ===== REPORTS MENU =====
+                    1 - Month To Date
+                    2 - Previous Month
+                    3 - Year To Date
+                    4 - Previous Year
+                    5 - Search by Vendor
+                    0 - Back to Ledger
+                    ========================
+                    """);
 
             System.out.print("Enter your choice: ");
             command = scanner.nextLine();
