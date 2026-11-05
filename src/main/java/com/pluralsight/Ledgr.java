@@ -1,7 +1,6 @@
 package com.pluralsight;
 
 import java.io.*;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.time.LocalDate;
@@ -179,7 +178,8 @@ public class Ledgr {
             double amount = Double.parseDouble(parts[4]);
 
             return new Transaction(date, time, description, vendor, amount);
-        } catch (NumberFormatException | DateTimeParseException e) {
+
+        } catch (RuntimeException e) {
             System.out.println("Skipping invalid transaction.");
             return null;
         }
@@ -446,7 +446,6 @@ public class Ledgr {
         System.out.print("Press Enter to continue...");
         scanner.nextLine();
     }
-
 }
 
 
