@@ -1,6 +1,6 @@
 # Accounting Ledger 
 ## Project Description: 
-The Accounting Ledger is a Java-based application designed to help users manage and track their financial transactions. Users can record deposits and payments, view their transaction history, and generate financial reports based on specific dates or vendors.
+The app Ledgr is a Java-based application designed to help users manage and track their financial transactions. Users can record deposits and payments, view their transaction history, and generate financial reports based on specific dates or vendors.
 The program also has reporting tools that make tracking financial activity simple and efficient.
 ### Features:
 - Transaction Management – Add deposits and payments while tracking financial activity.
