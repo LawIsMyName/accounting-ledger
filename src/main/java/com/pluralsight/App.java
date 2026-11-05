@@ -25,15 +25,17 @@ public class App {
 
         while (!command.equalsIgnoreCase("X")) {
 
+            System.out.println("\n===== HOME SCREEN =====");
+
+            System.out.printf("Current balance: $%,.2f%n", calculateBalance());
+
             System.out.println("""
-                    
-                    ===== HOME MENU =====
-                    D - Add Deposit
-                    P - Make Payment
-                    L - Ledger
-                    X - Exit
-                    =====================
-                    """);
+
+                1) Add Deposit
+                2) Make Payment
+                3) Ledger
+                4) Exit
+                """);
 
             System.out.print("Enter your choice: ");
             command = scanner.nextLine();
@@ -462,6 +464,18 @@ public class App {
         }
 
         return amount;
+    }
+
+    public static double calculateBalance() {
+
+        double balance = 0.0;
+
+        // Add every transaction amount to the balance
+        for (Transaction transaction : transactions) {
+            balance = balance + transaction.getAmount();
+        }
+
+        return balance;
     }
 
     public static void pressEnterToContinue() {
