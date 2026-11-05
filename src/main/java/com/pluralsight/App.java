@@ -148,7 +148,6 @@ public class App {
     }
 
     public static void loadTransactions() {
-        transactions.clear();
 
         try {
             FileReader fileReader = new FileReader("transactions.csv");
@@ -158,44 +157,47 @@ public class App {
 
             while (line != null) {
 
+                // Skip blank lines and the CSV header.
                 if (!line.isBlank() && !line.startsWith("date|")) {
 
+                    Transaction transaction = parseTransaction(line);
 
-                    try {
-                        String[] parts = line.split("\\|", -1);
-
-                        if (parts.length != 5) {
-                            System.out.println("Skipping invalid transaction.");
-
-                        } else {
-                            LocalDate date = LocalDate.parse(parts[0]);
-                            LocalTime time = LocalTime.parse(parts[1]);
-
-                            String description = parts[2];
-                            String vendor = parts[3];
-                            double amount = Double.parseDouble(parts[4]);
-
-                            Transaction transaction = new Transaction(
-                                    date, time, description, vendor, amount
-                            );
-
-                            transactions.add(transaction);
-                        }
-
-
-                    } catch (NumberFormatException | DateTimeParseException e) {
-                        System.out.println("Skipping invalid transaction");
+                    if (transaction != null) {
+                        transactions.add(transaction);
                     }
                 }
 
                 line = bufferedReader.readLine();
-
             }
 
             bufferedReader.close();
 
         } catch (IOException e) {
             System.out.println("Could not read transactions.csv");
+        }
+    }
+
+    public static Transaction parseTransaction(String line) {
+
+        String[] parts = line.split("\\|", -1);
+
+        if (parts.length != 5) {
+            System.out.println("Skipping invalid transaction.");
+            return null;
+        }
+
+        try {
+            LocalDate date = LocalDate.parse(parts[0]);
+            LocalTime time = LocalTime.parse(parts[1]);
+            String description = parts[2];
+            String vendor = parts[3];
+            double amount = Double.parseDouble(parts[4]);
+
+            return new Transaction(date, time, description, vendor, amount);
+
+        } catch (NumberFormatException | DateTimeParseException e) {
+            System.out.println("Skipping invalid transaction.");
+            return null;
         }
     }
 
@@ -244,9 +246,7 @@ public class App {
 
             LocalDate date = transaction.getDate();
 
-            if (date.getMonthValue() == today.getMonthValue()
-                    && date.getYear() == today.getYear()
-                    && !date.isAfter(today)) {
+            if (date.getMonthValue() == today.getMonthValue() && date.getYear() == today.getYear() && !date.isAfter(today)) {
 
                 System.out.println(transaction);
 
@@ -274,8 +274,7 @@ public class App {
 
             LocalDate date = transaction.getDate();
 
-            if (date.getMonthValue() == previousMonth.getMonthValue()
-                    && date.getYear() == previousMonth.getYear()) {
+            if (date.getMonthValue() == previousMonth.getMonthValue() && date.getYear() == previousMonth.getYear()) {
 
                 System.out.println(transaction);
 
@@ -305,8 +304,7 @@ public class App {
 
             LocalDate date = transaction.getDate();
 
-            if (date.getYear() == today.getYear()
-                    && !date.isAfter(today)) {
+            if (date.getYear() == today.getYear() && !date.isAfter(today)) {
 
                 System.out.println(transaction);
 
@@ -412,9 +410,7 @@ public class App {
         LocalDate date = LocalDate.now();
         LocalTime time = LocalTime.now();
 
-        Transaction transaction = new Transaction(
-                date, time, description, vendor, amount
-        );
+        Transaction transaction = new Transaction(date, time, description, vendor, amount);
 
         if (saveTransaction(transaction)) {
 
@@ -451,9 +447,7 @@ public class App {
         LocalDate date = LocalDate.now();
         LocalTime time = LocalTime.now();
 
-        Transaction transaction = new Transaction(
-                date, time, description, vendor, amount
-        );
+        Transaction transaction = new Transaction(date, time, description, vendor, amount);
 
         if (saveTransaction(transaction)) {
 
@@ -465,19 +459,11 @@ public class App {
 
     public static boolean saveTransaction(Transaction transaction) {
 
-        DateTimeFormatter timeFormatter =
-                DateTimeFormatter.ofPattern("HH:mm:ss");
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 
         String time = transaction.getTime().format(timeFormatter);
 
-        String line = String.format(
-                "%s|%s|%s|%s|%.2f\n",
-                transaction.getDate(),
-                time,
-                transaction.getDescription(),
-                transaction.getVendor(),
-                transaction.getAmount()
-        );
+        String line = String.format("%s|%s|%s|%s|%.2f\n", transaction.getDate(), time, transaction.getDescription(), transaction.getVendor(), transaction.getAmount());
 
         try {
             FileWriter writer = new FileWriter("transactions.csv", true);
