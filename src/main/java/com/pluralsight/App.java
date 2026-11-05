@@ -119,25 +119,15 @@ public class App {
 
         System.out.println("===== PAYMENTS =====");
 
-        int count = 0;
+        ArrayList<Transaction> matches = new ArrayList<>();
 
         for (Transaction transaction : transactions) {
-
             if (transaction.getAmount() < 0) {
-
-                System.out.println(transaction);
-
-                count = count + 1;
+                matches.add(transaction);
             }
         }
 
-        if (count == 0) {
-            System.out.println("No transactions found.");
-        }
-
-        System.out.println("Total payments: " + count);
-
-        pressEnterToContinue();
+        displayTransactions(matches);
     }
 
     public static void loadTransactions() {
