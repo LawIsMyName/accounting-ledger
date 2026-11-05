@@ -96,6 +96,21 @@ public class App {
         pressEnterToContinue();
     }
 
+    public static void displayTransactions(ArrayList<Transaction> matches) {
+
+        if (matches.isEmpty()) {
+            System.out.println("No transactions found.");
+        } else {
+            for (Transaction transaction : matches) {
+                System.out.println(transaction);
+            }
+        }
+
+        System.out.println("Total transactions: " + matches.size());
+
+        pressEnterToContinue();
+    }
+
     public static void displayDeposits() {
 
         System.out.println("===== DEPOSITS =====");
