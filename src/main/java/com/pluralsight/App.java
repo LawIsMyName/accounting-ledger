@@ -25,17 +25,18 @@ public class App {
 
         while (!command.equalsIgnoreCase("X")) {
 
-            System.out.println("\n===== HOME SCREEN =====");
+            System.out.println("\n========== LEDGR | HOME ==========");
 
-            System.out.printf("Current balance: $%,.2f%n", calculateBalance());
+            System.out.printf("Current Balance: $%,.2f%n", calculateBalance());
 
             System.out.println("""
-
-                1) Add Deposit
-                2) Make Payment
-                3) Ledger
-                4) Exit
-                """);
+                    ==================================
+                    D) Add Deposit
+                    P) Make Payment
+                    L) Ledger
+                    X) Exit
+                    ==================================
+                    """);
 
             System.out.print("Enter your choice: ");
             command = scanner.nextLine();
@@ -59,11 +60,11 @@ public class App {
             System.out.println("""
                     
                     ===== LEDGER MENU =====
-                    A - All Transactions
-                    D - Deposits
-                    P - Payments
-                    R - Reports
-                    H - Home
+                    A) All Transactions
+                    D) Deposits
+                    P) Payments
+                    R) Reports
+                    H) Home
                     =======================
                     """);
 
@@ -79,8 +80,6 @@ public class App {
                 default -> System.out.println("Invalid option. Try again.");
             }
         }
-
-        pressEnterToContinue();
     }
 
     public static void displayAllTransactions() {
@@ -91,17 +90,20 @@ public class App {
     }
 
     public static void displayTransactions(ArrayList<Transaction> matches) {
-
         if (matches.isEmpty()) {
             System.out.println("No transactions found.");
         } else {
+            System.out.printf("%-12s %-10s %-20s %-15s %10s%n", "DATE", "TIME", "DESCRIPTION", "VENDOR", "AMOUNT");
+            System.out.println("-------------------------------------------------------------------------");
+
             for (Transaction transaction : matches) {
                 System.out.println(transaction);
             }
         }
 
-        System.out.println("Total transactions: " + matches.size());
+        System.out.println("-------------------------------------------------------------------------");
 
+        System.out.println("Total transactions: " + matches.size());
         pressEnterToContinue();
     }
 
@@ -136,7 +138,6 @@ public class App {
     }
 
     public static void loadTransactions() {
-
         try {
             FileReader fileReader = new FileReader("transactions.csv");
             BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -147,7 +148,6 @@ public class App {
 
                 // Skip blank lines and the CSV header.
                 if (!line.isBlank() && !line.startsWith("date|")) {
-
                     Transaction transaction = parseTransaction(line);
 
                     if (transaction != null) {
@@ -159,16 +159,13 @@ public class App {
             }
 
             bufferedReader.close();
-
         } catch (IOException e) {
             System.out.println("Could not read transactions.csv");
         }
     }
 
     public static Transaction parseTransaction(String line) {
-
         String[] parts = line.split("\\|", -1);
-
         if (parts.length != 5) {
             System.out.println("Skipping invalid transaction.");
             return null;
@@ -182,7 +179,6 @@ public class App {
             double amount = Double.parseDouble(parts[4]);
 
             return new Transaction(date, time, description, vendor, amount);
-
         } catch (NumberFormatException | DateTimeParseException e) {
             System.out.println("Skipping invalid transaction.");
             return null;
@@ -190,20 +186,18 @@ public class App {
     }
 
     public static void runReportsScreen() {
-
         String command = "";
 
         while (!command.equals("0")) {
-
             System.out.println("""
                     
                     ===== REPORTS MENU =====
-                    1 - Month To Date
-                    2 - Previous Month
-                    3 - Year To Date
-                    4 - Previous Year
-                    5 - Search by Vendor
-                    0 - Back to Ledger
+                    1) Month To Date
+                    2) Previous Month
+                    3) Year To Date
+                    4) Previous Year
+                    5) Search by Vendor
+                    0) Back to Ledger
                     ========================
                     """);
 
@@ -220,13 +214,9 @@ public class App {
                 default -> System.out.println("Invalid option. Try again.");
             }
         }
-
-        pressEnterToContinue();
-
     }
 
     public static void displayMonthToDate() {
-
         LocalDate today = LocalDate.now();
         ArrayList<Transaction> matches = new ArrayList<>();
 
@@ -243,40 +233,32 @@ public class App {
         }
 
         displayTransactions(matches);
-
     }
 
     public static void displayPreviousMonth() {
-
         LocalDate previousMonth = LocalDate.now().minusMonths(1);
         ArrayList<Transaction> matches = new ArrayList<>();
 
         displayReportHeader("PREVIOUS MONTH");
 
         for (Transaction transaction : transactions) {
-
             LocalDate date = transaction.getDate();
 
             if (date.getMonthValue() == previousMonth.getMonthValue() && date.getYear() == previousMonth.getYear()) {
-
                 matches.add(transaction);
             }
         }
 
         displayTransactions(matches);
-
-
     }
 
     public static void displayYearToDate() {
-
         LocalDate today = LocalDate.now();
         ArrayList<Transaction> matches = new ArrayList<>();
 
         displayReportHeader("YEAR TO DATE");
 
         for (Transaction transaction : transactions) {
-
             LocalDate date = transaction.getDate();
 
             if (date.getYear() == today.getYear() && !date.isAfter(today)) {
@@ -286,11 +268,9 @@ public class App {
         }
 
         displayTransactions(matches);
-
     }
 
     public static void displayPreviousYear() {
-
         int previousYear = LocalDate.now().getYear() - 1;
         ArrayList<Transaction> matches = new ArrayList<>();
 
@@ -306,11 +286,9 @@ public class App {
         }
 
         displayTransactions(matches);
-
     }
 
     public static void searchByVendor() {
-
         String vendor = promptForString("Enter vendor name: ");
         ArrayList<Transaction> matches = new ArrayList<>();
 
@@ -327,29 +305,26 @@ public class App {
     }
 
     public static void displayReportHeader(String title) {
-
         System.out.println("\n===== " + title + " =====");
     }
 
     public static void displayWelcomeBanner() {
-            System.out.println();
-            System.out.println("╔════════════════════════════════════════╗");
-            System.out.println("║                                        ║");
-            System.out.println("║               L E D G R                ║");
-            System.out.println("║        Your Financial Dashboard        ║");
-            System.out.println("║                                        ║");
-            System.out.println("╠════════════════════════════════════════╣");
-            System.out.println("║                                        ║");
-            System.out.println("║   Welcome back!                        ║");
-            System.out.println("║   Take control of your finances.       ║");
-            System.out.println("║                                        ║");
-            System.out.println("╚════════════════════════════════════════╝");
-            System.out.println();
-
+        System.out.println();
+        System.out.println("╔════════════════════════════════════════╗");
+        System.out.println("║                                        ║");
+        System.out.println("║               L E D G R                ║");
+        System.out.println("║        Your Financial Dashboard        ║");
+        System.out.println("║                                        ║");
+        System.out.println("╠════════════════════════════════════════╣");
+        System.out.println("║                                        ║");
+        System.out.println("║   Welcome back!                        ║");
+        System.out.println("║   Take control of your finances.       ║");
+        System.out.println("║                                        ║");
+        System.out.println("╚════════════════════════════════════════╝");
+        System.out.println();
     }
 
     public static void addDeposit() {
-
         System.out.println("===== ADD DEPOSIT =====");
 
         String description = promptForString("Enter description: ");
@@ -370,7 +345,6 @@ public class App {
     }
 
     public static void makePayment() {
-
         System.out.println("===== MAKE PAYMENT =====");
 
         String description = promptForString("Enter description: ");
@@ -385,7 +359,6 @@ public class App {
         Transaction transaction = new Transaction(date, time, description, vendor, amount);
 
         if (saveTransaction(transaction)) {
-
             transactions.add(transaction);
 
             System.out.println("Payment saved successfully!");
@@ -395,7 +368,6 @@ public class App {
     }
 
     public static boolean saveTransaction(Transaction transaction) {
-
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 
         String time = transaction.getTime().format(timeFormatter);
@@ -419,18 +391,14 @@ public class App {
     // ---------- Input helpers ----------
 
     public static String promptForString(String prompt) {
-
         while (true) {
-
             System.out.print(prompt);
             String input = scanner.nextLine().trim();
 
             if (input.isBlank()) {
                 System.out.println("Input cannot be blank.");
-
             } else if (input.contains("|")) {
                 System.out.println("Input cannot contain pipe symbol. Example: |");
-
             } else {
                 return input;
             }
@@ -443,7 +411,6 @@ public class App {
             try {
 
                 return Double.parseDouble(scanner.nextLine().trim());
-
             } catch (NumberFormatException e) {
                 System.out.println("Please enter a valid number. Example: 12.50");
             }
@@ -455,7 +422,6 @@ public class App {
         double amount = 0;
 
         while (amount <= 0) {
-
             amount = promptForDouble("Enter amount: ");
 
             if (amount <= 0) {
@@ -467,10 +433,8 @@ public class App {
     }
 
     public static double calculateBalance() {
-
         double balance = 0.0;
 
-        // Add every transaction amount to the balance
         for (Transaction transaction : transactions) {
             balance = balance + transaction.getAmount();
         }

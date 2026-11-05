@@ -62,19 +62,13 @@ public class Transaction {
 
     @Override
     public String toString() {
-
-        DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm:ss");
-
-        return String.format("""
-            +--------------------------------------------------------------------+
-            | Date: %s | Time: %s | Amount: $%.2f
-            | Desc: %s | Vendor: %s
-            +--------------------------------------------------------------------+
-            """,
+        return String.format(
+                "%-12s %-10s %-20s %-15s %10.2f",
                 date,
-                time.format(timeFormat),
-                amount,
+                time.format(DateTimeFormatter.ofPattern("HH:mm:ss")),
                 description,
-                vendor);
+                vendor,
+                amount
+        );
     }
 }
