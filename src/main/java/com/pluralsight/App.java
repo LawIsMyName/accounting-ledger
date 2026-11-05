@@ -415,19 +415,7 @@ public class App {
 
         String description = promptForString("Enter description: ");
         String vendor = promptForString("Enter vendor: ");
-
-        double amount = 0;
-
-        while (amount <= 0) {
-
-            amount = promptForDouble("Enter amount: ");
-
-            if (amount <= 0) {
-                System.out.println("Amount must be greater than 0.");
-            }
-
-            pressEnterToContinue();
-        }
+        double amount = promptForAmount();
 
         amount = -amount;
 
@@ -442,6 +430,8 @@ public class App {
 
             System.out.println("Payment saved successfully!");
         }
+
+        pressEnterToContinue();
     }
 
     public static boolean saveTransaction(Transaction transaction) {
