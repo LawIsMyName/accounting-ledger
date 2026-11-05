@@ -394,17 +394,7 @@ public class App {
 
         String description = promptForString("Enter description: ");
         String vendor = promptForString("Enter vendor: ");
-
-        double amount = 0;
-
-        while (amount <= 0) {
-
-            amount = promptForDouble("Enter amount: ");
-
-            if (amount <= 0) {
-                System.out.println("Amount must be greater than 0.");
-            }
-        }
+        double amount = promptForAmount();
 
         LocalDate date = LocalDate.now();
         LocalTime time = LocalTime.now();
@@ -412,9 +402,7 @@ public class App {
         Transaction transaction = new Transaction(date, time, description, vendor, amount);
 
         if (saveTransaction(transaction)) {
-
             transactions.add(transaction);
-
             System.out.println("Deposit saved successfully!");
         }
 
