@@ -1,4 +1,5 @@
 package com.pluralsight;
+
 import java.io.*;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -220,10 +221,9 @@ public class App {
     public static void displayMonthToDate() {
 
         LocalDate today = LocalDate.now();
+        ArrayList<Transaction> matches = new ArrayList<>();
 
         displayReportHeader("MONTH TO DATE");
-
-        int count = 0;
 
         for (Transaction transaction : transactions) {
 
@@ -231,27 +231,20 @@ public class App {
 
             if (date.getMonthValue() == today.getMonthValue() && date.getYear() == today.getYear() && !date.isAfter(today)) {
 
-                System.out.println(transaction);
-
-                count = count + 1;
+                matches.add(transaction);
             }
         }
-        if (count == 0) {
-            System.out.println("No transactions found.");
-        }
-        System.out.println("Total transactions: " + count);
 
-        pressEnterToContinue();
+        displayTransactions(matches);
 
     }
 
     public static void displayPreviousMonth() {
 
         LocalDate previousMonth = LocalDate.now().minusMonths(1);
+        ArrayList<Transaction> matches = new ArrayList<>();
 
         displayReportHeader("PREVIOUS MONTH");
-
-        int count = 0;
 
         for (Transaction transaction : transactions) {
 
@@ -259,29 +252,21 @@ public class App {
 
             if (date.getMonthValue() == previousMonth.getMonthValue() && date.getYear() == previousMonth.getYear()) {
 
-                System.out.println(transaction);
-
-                count = count + 1;
+                matches.add(transaction);
             }
         }
 
-        if (count == 0) {
-            System.out.println("No transactions found.");
-        }
+        displayTransactions(matches);
 
-        System.out.println("Total transactions: " + count);
-
-        pressEnterToContinue();
 
     }
 
     public static void displayYearToDate() {
 
         LocalDate today = LocalDate.now();
+        ArrayList<Transaction> matches = new ArrayList<>();
 
         displayReportHeader("YEAR TO DATE");
-
-        int count = 0;
 
         for (Transaction transaction : transactions) {
 
@@ -289,75 +274,49 @@ public class App {
 
             if (date.getYear() == today.getYear() && !date.isAfter(today)) {
 
-                System.out.println(transaction);
-
-                count = count + 1;
+                matches.add(transaction);
             }
         }
 
-        if (count == 0) {
-            System.out.println("No transactions found.");
-        }
-
-        System.out.println("Total transactions: " + count);
-
-        pressEnterToContinue();
+        displayTransactions(matches);
 
     }
 
     public static void displayPreviousYear() {
 
         int previousYear = LocalDate.now().getYear() - 1;
+        ArrayList<Transaction> matches = new ArrayList<>();
 
         displayReportHeader("PREVIOUS YEAR");
-
-        int count = 0;
 
         for (Transaction transaction : transactions) {
 
             LocalDate date = transaction.getDate();
 
             if (date.getYear() == previousYear) {
-
-                System.out.println(transaction);
-
-                count = count + 1;
+                matches.add(transaction);
             }
         }
-        if (count == 0) {
-            System.out.println("No transactions found.");
-        }
-        System.out.println("Total transactions: " + count);
 
-        pressEnterToContinue();
+        displayTransactions(matches);
 
     }
 
     public static void searchByVendor() {
 
         String vendor = promptForString("Enter vendor name: ");
+        ArrayList<Transaction> matches = new ArrayList<>();
 
         displayReportHeader("SEARCH BY VENDOR");
-
-        int count = 0;
 
         for (Transaction transaction : transactions) {
 
             if (transaction.getVendor().equalsIgnoreCase(vendor)) {
-
-                System.out.println(transaction);
-
-                count = count + 1;
+                matches.add(transaction);
             }
         }
 
-        if (count == 0) {
-            System.out.println("No transactions found.");
-        }
-
-        System.out.println("Total transactions: " + count);
-
-        pressEnterToContinue();
+        displayTransactions(matches);
     }
 
     public static void displayReportHeader(String title) {
