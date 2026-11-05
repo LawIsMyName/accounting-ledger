@@ -66,18 +66,15 @@ public class Transaction {
         DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm:ss");
 
         return String.format("""
-            +------------------------------------+
-            | Date:   %-26s |
-            | Time:   %-26s |
-            | Desc:   %-26s |
-            | Vendor: %-26s |
-            | Amount: $%-25.2f |
-            +------------------------------------+
+            +--------------------------------------------------------------------+
+            | Date: %s | Time: %s | Amount: $%.2f
+            | Desc: %s | Vendor: %s
+            +--------------------------------------------------------------------+
             """,
                 date,
                 time.format(timeFormat),
+                amount,
                 description,
-                vendor,
-                amount);
+                vendor);
     }
 }

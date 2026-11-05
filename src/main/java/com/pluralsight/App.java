@@ -1,4 +1,5 @@
 package com.pluralsight;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -134,6 +135,10 @@ public class App {
 
                 count = count + 1;
             }
+        }
+
+        if (count == 0) {
+            System.out.println("No transactions found.");
         }
 
         System.out.println("Total payments: " + count);
