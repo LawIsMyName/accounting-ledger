@@ -1,5 +1,4 @@
 package com.pluralsight;
-
 import java.io.*;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -511,6 +510,22 @@ public class App {
                 System.out.println("Please enter a valid number. Example: 12.50");
             }
         }
+    }
+
+    public static double promptForAmount() {
+
+        double amount = 0;
+
+        while (amount <= 0) {
+
+            amount = promptForDouble("Enter amount: ");
+
+            if (amount <= 0) {
+                System.out.println("Amount must be greater than 0.");
+            }
+        }
+
+        return amount;
     }
 
     public static void pressEnterToContinue() {
