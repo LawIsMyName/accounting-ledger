@@ -330,10 +330,20 @@ public class App {
     }
 
     public static void displayWelcomeBanner() {
-        System.out.println("==============================");
-        System.out.println("       ACCOUNTING LEDGER      ");
-        System.out.println("==============================");
-        System.out.println("Welcome to your financial tracker!");
+            System.out.println();
+            System.out.println("╔════════════════════════════════════════╗");
+            System.out.println("║                                        ║");
+            System.out.println("║               L E D G R                ║");
+            System.out.println("║        Your Financial Dashboard        ║");
+            System.out.println("║                                        ║");
+            System.out.println("╠════════════════════════════════════════╣");
+            System.out.println("║                                        ║");
+            System.out.println("║   Welcome back!                        ║");
+            System.out.println("║   Take control of your finances.       ║");
+            System.out.println("║                                        ║");
+            System.out.println("╚════════════════════════════════════════╝");
+            System.out.println();
+
     }
 
     public static void addDeposit() {
