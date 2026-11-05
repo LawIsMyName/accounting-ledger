@@ -77,6 +77,8 @@ public class App {
                 default -> System.out.println("Invalid option. Try again.");
             }
         }
+
+        pressEnterToContinue();
     }
 
     public static void displayAllTransactions() {
@@ -216,6 +218,9 @@ public class App {
                 default -> System.out.println("Invalid option. Try again.");
             }
         }
+
+        pressEnterToContinue();
+
     }
 
     public static void displayMonthToDate() {
