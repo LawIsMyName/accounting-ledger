@@ -82,18 +82,7 @@ public class App {
 
         System.out.println("===== ALL TRANSACTIONS =====");
 
-        int count = 0;
-
-        for (Transaction transaction : transactions) {
-
-            System.out.println(transaction);
-
-            count = count + 1;
-        }
-
-        System.out.println("Total transactions: " + count);
-
-        pressEnterToContinue();
+        displayTransactions(transactions);
     }
 
     public static void displayTransactions(ArrayList<Transaction> matches) {
@@ -115,25 +104,15 @@ public class App {
 
         System.out.println("===== DEPOSITS =====");
 
-        int count = 0;
+        ArrayList<Transaction> matches = new ArrayList<>();
 
         for (Transaction transaction : transactions) {
-
             if (transaction.getAmount() > 0) {
-
-                System.out.println(transaction);
-
-                count = count + 1;
+                matches.add(transaction);
             }
         }
 
-        if (count == 0) {
-            System.out.println("No transactions found.");
-        }
-
-        System.out.println("Total deposits: " + count);
-
-        pressEnterToContinue();
+        displayTransactions(matches);
     }
 
     public static void displayPayments() {
