@@ -1,6 +1,7 @@
 package com.pluralsight;
 
 import java.io.*;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.time.LocalDate;
@@ -164,7 +165,7 @@ public class App {
                         String[] parts = line.split("\\|", -1);
 
                         if (parts.length != 5) {
-                            System.out.println("Skipping invalid row: " + line);
+                            System.out.println("Skipping invalid transaction.");
 
                         } else {
                             LocalDate date = LocalDate.parse(parts[0]);
@@ -182,17 +183,16 @@ public class App {
                         }
 
 
-                    } catch (RuntimeException e) {
-                        System.out.println("Skipping invalid row: " + line);
+                    } catch (NumberFormatException | DateTimeParseException e) {
+                        System.out.println("Skipping invalid transaction");
                     }
                 }
 
                 line = bufferedReader.readLine();
+
             }
 
             bufferedReader.close();
-
-            System.out.println(transactions.size() + " transactions loaded.");
 
         } catch (IOException e) {
             System.out.println("Could not read transactions.csv");
@@ -528,7 +528,6 @@ public class App {
     }
 
     public static void pressEnterToContinue() {
-        System.out.println();
         System.out.print("Press Enter to continue...");
         scanner.nextLine();
     }
