@@ -2,6 +2,28 @@
 ## Project Description: 
 The app Ledgr is a Java-based application designed to help users manage and track their financial transactions. Users can record deposits and payments, view their transaction history, and generate financial reports based on specific dates or vendors.
 The program also has reporting tools that make tracking financial activity simple and efficient.
+## User Stories:
+### 1. View Account balance
+
+**As a user**, I want to view my current account balance so that I can keep track of my available money.
+
+### 2. Add Deposits
+**As a user**, I want to record deposits so that I can track money entering my account.
+
+### 3. Make Payments
+**As a user**, I want to record payments so that I can track money leaving my account.
+
+### 4. View Transaction History
+**As a user**, I want to view my transaction history so that I can review my financial activity.
+
+### 5. Generate Financial Reports
+**As a user**, I want to view financial reports so that I can understand my spending and income over time.
+
+### 6. Save and Load Transactions
+As **a user**, I want my transactions to be saved so that I don't lose my financial records when I close the application.
+
+### 7. Search Transactions by Vendor
+**As a user**, I want to search for transactions by vendor so that I can quickly find and review my financial activity with a specific business.
 ### Features:
 - Account balance display
 - Transaction Management – Add deposits and payments while tracking financial activity.
