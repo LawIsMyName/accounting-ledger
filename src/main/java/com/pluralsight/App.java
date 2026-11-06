@@ -61,7 +61,7 @@ public class Ledgr {
             System.out.println("""
                     
                     ===== LEDGER MENU =====
-                    A) All Transactions
+                    A) All
                     D) Deposits
                     P) Payments
                     R) Reports
@@ -200,7 +200,7 @@ public class Ledgr {
                     3) Year To Date
                     4) Previous Year
                     5) Search by Vendor
-                    0) Back to Ledger
+                    0) Back
                     ========================
                     """);
 
