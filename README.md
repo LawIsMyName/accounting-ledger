@@ -80,11 +80,11 @@ Organizing Java programs using methods and classes
 
 ## Screenshots 
 ### Home Menu:
-![Home Menu](/.mvn/images/home-menu.png)
+![Home Menu](/.mvn/images/home.png)
 ### Ledger Menu:
-![Ledger Menu](/.mvn/images/ledger-menu.png)
+![Ledger Menu](/.mvn/images/ledger.png)
 ### Reports Menu:
-![Reports Menu](/.mvn/images/reports-menu.png)
+![Reports Menu](/.mvn/images/reports.png)
 ### Transaction Results:
-![Transaction Results](/.mvn/images/transaction-example.png)
+![Transaction Results](/.mvn/images/transactions.png)
 

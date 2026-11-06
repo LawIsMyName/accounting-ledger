@@ -1,13 +1,14 @@
 package com.pluralsight;
 
 import java.io.*;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-public class Ledgr {
+public class App {
     static Scanner scanner = new Scanner(System.in);
     static ArrayList<Transaction> transactions = new ArrayList<>();
 
@@ -57,7 +58,6 @@ public class Ledgr {
         String command = "";
 
         while (!command.equalsIgnoreCase("H")) {
-
             System.out.println("""
                     
                     ===== LEDGER MENU =====
@@ -182,8 +182,11 @@ public class Ledgr {
 
             return new Transaction(date, time, description, vendor, amount);
 
-        } catch (RuntimeException e) {
-            System.out.println("Skipping invalid transaction.");
+        } catch (NumberFormatException e) {
+            System.out.println("Could not load amount from file.");
+            return null;
+        } catch (DateTimeParseException e) {
+            System.out.println("Could not load date or time from file.");
             return null;
         }
     }
