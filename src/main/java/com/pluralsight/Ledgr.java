@@ -19,7 +19,6 @@ public class Ledgr {
     }
 
     public static void runHomeScreen() {
-
         String command = "";
 
         while (!command.equalsIgnoreCase("X")) {
@@ -55,7 +54,6 @@ public class Ledgr {
     }
 
     public static void runLedgerScreen() {
-
         String command = "";
 
         while (!command.equalsIgnoreCase("H")) {
@@ -90,7 +88,6 @@ public class Ledgr {
     }
 
     public static void displayAllTransactions() {
-
         System.out.println("===== ALL TRANSACTIONS =====");
 
         displayTransactions(transactions);
@@ -115,7 +112,6 @@ public class Ledgr {
     }
 
     public static void displayDeposits() {
-
         System.out.println("===== DEPOSITS =====");
 
         ArrayList<Transaction> matches = new ArrayList<>();
@@ -130,7 +126,6 @@ public class Ledgr {
     }
 
     public static void displayPayments() {
-
         System.out.println("===== PAYMENTS =====");
 
         ArrayList<Transaction> matches = new ArrayList<>();
@@ -219,7 +214,11 @@ public class Ledgr {
                 case "4" -> displayPreviousYear();
                 case "5" -> searchByVendor();
                 case "0" -> System.out.println("Returning to Ledger...");
-                default -> System.out.println("Invalid option. Try again.");
+                default -> {
+                    if (!command.isBlank()) {
+                        System.out.println("Invalid option. Try again.");
+                    }
+                }
             }
         }
     }
