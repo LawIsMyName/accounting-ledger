@@ -45,7 +45,11 @@ public class Ledgr {
                 case "P" -> makePayment();
                 case "L" -> runLedgerScreen();
                 case "X" -> System.out.println("Goodbye!");
-                default -> System.out.println("Invalid option. Try again.");
+                default -> {
+                    if (!command.isBlank()) {
+                        System.out.println("Invalid option. Try again.");
+                    }
+                }
             }
         }
     }
@@ -76,7 +80,9 @@ public class Ledgr {
                 case "P" -> displayPayments();
                 case "R" -> runReportsScreen();
                 case "H" -> System.out.println("Returning Home...");
-                default -> System.out.println("Invalid option. Try again.");
+                default -> {
+                    System.out.println("Invalid option. Try again.");
+                }
             }
         }
     }
