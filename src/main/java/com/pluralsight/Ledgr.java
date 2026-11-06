@@ -81,7 +81,9 @@ public class Ledgr {
                 case "R" -> runReportsScreen();
                 case "H" -> System.out.println("Returning Home...");
                 default -> {
-                    System.out.println("Invalid option. Try again.");
+                    if (!command.isBlank()) {
+                        System.out.println("Invalid option. Try again.");
+                    }
                 }
             }
         }
